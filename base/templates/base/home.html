@@ -2,6 +2,18 @@
 
 {% block content %}
 
+    <div>
 
+        {% for post in posts %}
+
+            <div>
+                <small>{{ post.host }}</small>
+                <h2><a >{{ post.title }}</a></h2>
+                <hr>
+            </div>
+
+        {% endfor %}
+
+    </div>
 
 {% endblock content %}
