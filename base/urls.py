@@ -21,4 +21,5 @@ import base.views
 urlpatterns = [
     path('', base.views.home, name='home'),
     path('post/<int:pk>', base.views.post, name='post'),
+    path('create-post/', base.views.create_post, name='create-post'),
 ]
