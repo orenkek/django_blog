@@ -3,6 +3,7 @@
 {% block content %}
 
     <div>
+        <a href="{% url 'edit-post' post.id %}">Edit post</a>
         <small>{{ post.host }}</small>
         <h2>{{ post.title }}</h2>
         <span>{{ post.text }}</span>

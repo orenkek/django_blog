@@ -27,6 +27,26 @@ def post(request, pk):
 
 
 @login_required(login_url='login')
+def edit_post(request, pk):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('home')
+
+    post = Post.objects.get(id=pk)
+
+    if request.user != post.host:
+        return HttpResponse("Not allowed here!")
+
+    form = PostForm(instance=post)
+
+    context = {'form': form}
+
+    return render(request, 'base/post_form.html', context)
+
+
+@login_required(login_url='login')
 def create_post(request):
     form = PostForm()
 
