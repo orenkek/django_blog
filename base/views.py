@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
 
 from .forms import PostForm
 from .models import Post
@@ -35,3 +36,32 @@ def create_post(request):
     context = {'form': form}
 
     return render(request, 'base/post_form.html', context)
+
+def register_page(request):
+    page = 'register'
+
+    context = {'page': page}
+
+    return render(request, 'base/login_register.html', context)
+
+
+def login_page(request):
+    page = 'login'
+
+    context = {'page': page}
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+
+    return render(request, 'base/login_register.html', context)
+
+
+def logout_page(request):
+    logout(request)
+    return redirect('home')

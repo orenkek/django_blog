@@ -22,4 +22,7 @@ urlpatterns = [
     path('', base.views.home, name='home'),
     path('post/<int:pk>', base.views.post, name='post'),
     path('create-post/', base.views.create_post, name='create-post'),
+
+    path('logout/', base.views.logout_page, name='logout'),
+    path('login/', base.views.login_page, name='login'),
 ]
